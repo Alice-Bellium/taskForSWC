@@ -32,7 +32,7 @@ class EventController extends Controller
         $data = $request->validated();
         $data['creator_user_id'] = Auth::id();
 
-        $event = Event::query()->create($data);
+        Event::query()->create($data);
 
         return redirect()->route('index')->with('success', 'Событие успешно создано!');
     }
@@ -42,7 +42,22 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('events.show', ['event' => $event]);
+        $creatorUserFirstName = $event->creatorUser->first_name;
+        $creatorUserLastName = $event->creatorUser->last_name;
+        $participants = $event->users()->get();
+        $participantsIsEmpty = $participants->isEmpty();
+        $isCreator = $event->creator_user_id === Auth::id();
+        $isParticipant = $participants->contains(Auth::id());
+
+        return view('events.show', compact(
+            'event',
+            'creatorUserFirstName',
+            'creatorUserLastName',
+            'participantsIsEmpty',
+            'participants',
+            'isCreator',
+            'isParticipant',
+        ));
     }
 
     /**
@@ -70,5 +85,27 @@ class EventController extends Controller
     {
         $event->delete();
         return redirect()->route('index')->with('success', 'Событие удалено');
+    }
+
+    /**
+     * Join to the event.
+     */
+    public function join(Event $event)
+    {
+        if (!$event->users()->get()->contains(Auth::id())) {
+            $event->users()->attach(Auth::id());
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * Left to the event.
+     */
+    public function left(Event $event)
+    {
+        if ($event->users()->get()->contains(Auth::id())) {
+            $event->users()->detach(Auth::id());
+        }
+        return redirect()->back();
     }
 }

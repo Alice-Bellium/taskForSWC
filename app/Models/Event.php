@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $creator_user_id Идентификатор пользователя
  * @property-read Carbon $created_at Дата создания
  * @property-read Carbon $updated_at Дата обновления
+ * @property-read User $creatorUser Создатель
  */
 class Event extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
