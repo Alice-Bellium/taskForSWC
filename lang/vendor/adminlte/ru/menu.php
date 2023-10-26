@@ -16,4 +16,7 @@ return [
     'important'                     => 'Важно',
     'warning'                       => 'Внимание',
     'information'                   => 'Информация',
+    'events'                        => 'СОБЫТИЯ',
+    'all_events'                    => 'Все события',
+    'my_events'                     => 'Мои события',
 ];

@@ -5,7 +5,10 @@ namespace App\Providers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use App\Models\Event as ModelEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,7 +28,31 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $event->menu->add(['header' => 'events'], ['header' => 'all_events']);
+
+            $modalEvent = new ModelEvent;
+            $modalEventData = $modalEvent->query()->get();
+
+            foreach ($modalEventData as $item) {
+                $event->menu->add([
+                    'text' => $item->title,
+                    'url' => route('events.show', $item),
+                ]);
+            }
+
+            $event->menu->add([
+                'header' => 'my_events',
+            ]);
+
+            $userEventsData = $modalEventData->where('creator_user_id', '=', Auth::id());
+            foreach ($userEventsData as $item) {
+                $event->menu->add([
+                    'text' => $item->title,
+                    'url' => route('events.show', $item),
+                ]);
+            }
+        });
     }
 
     /**
