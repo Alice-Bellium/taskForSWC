@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'События')
+@section('title', 'Изменить событие')
 
 @section('content_header')
-    <h2>Изменить событиe</h2>
+    <h2>Изменить событие</h2>
     @include('messages')
 @stop
 

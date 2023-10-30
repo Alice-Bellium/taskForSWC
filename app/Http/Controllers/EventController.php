@@ -42,18 +42,12 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $creatorUserFirstName = $event->creatorUser->first_name;
-        $creatorUserLastName = $event->creatorUser->last_name;
         $participants = $event->users()->get();
-        $participantsIsEmpty = $participants->isEmpty();
         $isCreator = $event->creator_user_id === Auth::id();
         $isParticipant = $participants->contains(Auth::id());
 
         return view('events.show', compact(
             'event',
-            'creatorUserFirstName',
-            'creatorUserLastName',
-            'participantsIsEmpty',
             'participants',
             'isCreator',
             'isParticipant',
@@ -73,9 +67,10 @@ class EventController extends Controller
      */
     public function update(Event $event, EventCreateRequest $request)
     {
-        $event = Event::query()->update($request->validated());
+        $event->update($request->validated());
 
-        return view('events.show', ['event' => $event])->with('success', 'Событие обновлено!');
+        return redirect()->route('events.show', ['event' => $event])
+            ->with('success', 'Событие обновлено!');
     }
 
     /**
@@ -107,5 +102,15 @@ class EventController extends Controller
             $event->users()->detach(Auth::id());
         }
         return redirect()->back();
+    }
+
+    /**
+     * Get all events.
+     */
+    public function events()
+    {
+        // todo paginate
+        $events =  new Event();
+        return view('admin.events', ['events' => $events->query()->get()]);
     }
 }

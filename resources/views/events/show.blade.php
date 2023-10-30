@@ -18,15 +18,15 @@
                              fgroup-class="col-md-8" disable-feedback
                              disabled="true">{{ $event->text }}</x-adminlte-textarea>
         <x-adminlte-input name="title" label="Создатель" fgroup-class="col-md-8"
-                          value="{{ $creatorUserFirstName }} {{ $creatorUserLastName }}"
+                          value="{{ $event->creatorUser->first_name }} {{ $event->creatorUser->last_name }}"
                           disabled="true"></x-adminlte-input>
         <p class="label-show">Участники</p>
         {{--        todo может быть много пользователей, нужна пагинация --}}
-        @if($participantsIsEmpty)
+        @if($participants->isEmpty())
             <p class="label-show">Здесь никого нет</p>
         @else
             @foreach($participants as $participant)
-                <x-adminlte-input name="title" fgroup-class="col-md-8"
+                <x-adminlte-input name="participant" fgroup-class="col-md-8"
                                   value="{{ $participant->first_name }} {{ $participant->last_name }}"
                                   disabled="true"></x-adminlte-input>
             @endforeach
