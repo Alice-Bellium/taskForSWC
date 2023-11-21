@@ -13,7 +13,7 @@
     <form action="{{ route('users.update', $user) }}" method="post">
         @csrf
         @method('put')
-        <div class="alert alert-default-info col-md-8">
+        <div class="col-md-8">
             <x-adminlte-input name="first_name" label="Имя" type="text" placeholder="Имя пользователя"
                               fgroup-class="col-md-8" value="{{ old('first_name', $user->first_name) }}"
                               disable-feedback required></x-adminlte-input>
@@ -31,11 +31,11 @@
                               value="{{ $user->date_of_birth ? old('date_of_birth_name', $user->date_of_birth->format('d.m.Y')) : '' }}"
                               disable-feedback></x-adminlte-input>
         </div>
-        <x-adminlte-button type="submit" label="Сохранить" theme="primary"></x-adminlte-button>
+        <x-adminlte-button class="ml-3" type="submit" label="Сохранить" theme="primary"></x-adminlte-button>
     </form>
     <form action="{{ route('users.destroy', $user) }}" method="post" class="form-margin">
         @csrf
         @method('delete')
-        <x-adminlte-button type="submit" label="Удалить пользователя" theme="danger"></x-adminlte-button>
+        <x-adminlte-button class="ml-3" type="submit" label="Удалить пользователя" theme="danger"></x-adminlte-button>
     </form>
 @stop

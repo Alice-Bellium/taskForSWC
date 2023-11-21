@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <div class="alert alert-default-info col-md-8">
+    <div class="col-md-8">
         <x-adminlte-input name="title" label="Заголовок" value="{{ $event->title }}" fgroup-class="col-md-8"
                           disabled="true"></x-adminlte-input>
         <x-adminlte-textarea name="text" label="Описание" type="text" placeholder="Описание" rows=5
@@ -34,17 +34,18 @@
 
         @if($isCreator)
             <a href="{{ route('events.edit', $event) }}"
-               class="btn btn-primary inline link-text-decoration">Изменить событие</a>
+               class="btn btn-primary inline link-text-decoration ml-2">Изменить событие</a>
         @else
             @if($isParticipant)
                 <form action="{{ route('events.left', $event) }}" method="post">
                     @csrf
-                    <x-adminlte-button type="submit" label="Покинуть событие" theme="danger"></x-adminlte-button>
+                    <x-adminlte-button class="ml-2" type="submit" label="Покинуть событие"
+                                       theme="danger"></x-adminlte-button>
                 </form>
             @else
                 <form action="{{ route('events.join', $event) }}" method="post">
                     @csrf
-                    <x-adminlte-button type="submit" label="Присоединиться к событию"
+                    <x-adminlte-button class="ml-2" type="submit" label="Присоединиться к событию"
                                        theme="primary"></x-adminlte-button>
                 </form>
             @endif
