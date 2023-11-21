@@ -3,7 +3,7 @@
 
 Данный учебный проект был разработан с целью ознакомления с фреймворком Laravel.
 
-![Дейли](https://github.com/Alisa-Bellium/taskForSWC/blob/main/image.png)
+![Дейли](https://github.com/Alice-Bellium/taskForSWC/blob/main/image.png)
 
 
 Проект был выполнен на PHP & Laravel.
