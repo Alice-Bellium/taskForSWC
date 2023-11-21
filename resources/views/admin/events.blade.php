@@ -9,10 +9,10 @@
 
 @section('content')
     @foreach ($events as $event)
-        <div class="alert alert-default-info col-md-8">
-            <x-adminlte-input name="title" label="Заголовок" value="{{ $event->title }}" fgroup-class="col-md-8"
+        <div class="col-md-8 mb-4">
+            <x-adminlte-input name="title" label="Заголовок события" value="{{ $event->title }}" fgroup-class="col-md-8"
                               disabled="true"></x-adminlte-input>
-            <a href="{{ route('events.show', $event) }}" class="btn btn-primary inline">Подробнее</a>
+            <a href="{{ route('events.show', $event) }}" class="btn btn-primary inline ml-2">Подробнее</a>
         </div>
     @endforeach
 @stop

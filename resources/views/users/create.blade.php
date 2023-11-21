@@ -10,7 +10,7 @@
     @include('messages')
     <form action="{{ route('users.store') }}" method="post">
         @csrf
-        <div class="alert alert-default-info col-md-8">
+        <div class="col-md-8">
             <x-adminlte-input name="first_name" label="Имя" type="text" placeholder="Имя пользователя"
                               fgroup-class="col-md-8" value="{{ old('first_name') }}"
                               disable-feedback required></x-adminlte-input>
@@ -26,6 +26,7 @@
                               fgroup-class="col-md-8" value="{{ old('date_of_birth') }}"
                               disable-feedback></x-adminlte-input>
         </div>
-        <x-adminlte-button type="submit" label="Зарегистровать пользователя" theme="primary"></x-adminlte-button>
+        <x-adminlte-button class="ml-3" type="submit" label="Зарегистровать пользователя"
+                           theme="primary"></x-adminlte-button>
     </form>
 @stop

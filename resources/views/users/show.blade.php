@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-    <div class="alert alert-default-info col-md-8">
+    <div class=" col-md-8">
         <x-adminlte-input name="id" label="Номер" fgroup-class="col-md-8"
                           value="{{ $user->id }}" disabled="true"></x-adminlte-input>
         <x-adminlte-input name="first_name" label="Имя" fgroup-class="col-md-8"
@@ -27,6 +27,6 @@
         <x-adminlte-input name="updated_at" label="Дата последнего изменения" fgroup-class="col-md-8"
                           value="{{ $user->updated_at->format('d.m.Y H:m:s') }}"
                           disabled="true"></x-adminlte-input>
-        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary inline">Изменить</a>
+        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary inline ml-2">Изменить</a>
     </div>
 @stop
