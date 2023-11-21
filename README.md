@@ -3,6 +3,8 @@
 
 Данный учебный проект был разработан с целью ознакомления с фреймворком Laravel.
 
+![Дейли](https://github.com/Alisa-Bellium/taskForSWC/blob/main/image.png)
+
 
 Проект был выполнен на PHP & Laravel.
 1. Создана БД под управлением MySQL со следующими сущностями:
